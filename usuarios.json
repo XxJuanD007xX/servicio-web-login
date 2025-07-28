@@ -2,5 +2,13 @@
     {
         "usuario": "Juan",
         "contrasena": "$2y$10$SuPOMndumPMseI\/.87.Sye00Svx15gLta6Tx2vH\/HWk32rH6ChG.i"
+    },
+    {
+        "usuario": "prueba1",
+        "contrasena": "$2y$10$bEoN0vVD\/kNJUQZQ9xOQPudV8HXcjU\/XSBGo4BzHxLvtIh1tDsdmS"
+    },
+    {
+        "usuario": "prueba2",
+        "contrasena": "$2y$10$MPoUGibFafGmJ4sdAL3o1e7TnhztrPfvQR8tnZGm3j30HXPoBwDxe"
     }
 ]

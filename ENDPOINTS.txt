@@ -1,0 +1,2 @@
+POST http://localhost/JuanDiegoSierraMoreno_AA5_EV01/registro.php
+POST http://localhost/JuanDiegoSierraMoreno_AA5_EV01/login.php
