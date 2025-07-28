@@ -4,19 +4,35 @@
 $usuario = $_POST['usuario'] ?? '';
 $contrasena = $_POST['contrasena'] ?? '';
 
+// Verificar que se envíen los datos
 if (!$usuario || !$contrasena) {
-    exit("Debe enviar usuario y contraseña.");
+    echo "Debe enviar usuario y contraseña.";
+    header("refresh:2;url=index.php");
+    exit;
 }
 
-// Cargar usuarios
+// Leer archivo JSON de usuarios
 $usuarios = json_decode(file_get_contents("usuarios.json"), true);
 
-// Verificar credenciales
+// Bandera para saber si se autenticó correctamente
+$autenticado = false;
+
+// Recorrer lista de usuarios
 foreach ($usuarios as $u) {
+    // Validar usuario y contraseña
     if ($u['usuario'] === $usuario && password_verify($contrasena, $u['contrasena'])) {
-        exit("Autenticación satisfactoria.");
+        $autenticado = true;
+        break;
     }
 }
 
-echo "Error en la autenticación.";
+// Verificar resultado
+if ($autenticado) {
+    echo "Autenticación satisfactoria. Redirigiendo...";
+    header("refresh:2;url=index.php");
+} else {
+    echo "Error en la autenticación. Redirigiendo...";
+    header("refresh:2;url=index.php");
+}
+exit;
 ?>

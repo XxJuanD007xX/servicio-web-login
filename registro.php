@@ -1,7 +1,6 @@
 <?php
 // Registro de nuevos usuarios
 
-// Recibimos usuario y contraseña por POST
 $usuario = $_POST['usuario'] ?? '';
 $contrasena = $_POST['contrasena'] ?? '';
 
@@ -9,13 +8,15 @@ if (!$usuario || !$contrasena) {
     exit("Debe enviar usuario y contraseña.");
 }
 
-// Cargar usuarios existentes
+// Leer archivo JSON
 $usuarios = json_decode(file_get_contents("usuarios.json"), true);
 
 // Verificar si el usuario ya existe
 foreach ($usuarios as $u) {
     if ($u['usuario'] === $usuario) {
-        exit("Error: El usuario ya existe.");
+        echo "Error: El usuario ya existe.";
+        header("refresh:2;url=index.php");
+        exit;
     }
 }
 
@@ -25,8 +26,11 @@ $usuarios[] = [
     "contrasena" => password_hash($contrasena, PASSWORD_DEFAULT)
 ];
 
-// Guardar en el archivo
+// Guardar archivo
 file_put_contents("usuarios.json", json_encode($usuarios, JSON_PRETTY_PRINT));
 
-echo "Usuario registrado con éxito.";
+// Mensaje y redirección
+echo "Usuario registrado con éxito. Redirigiendo...";
+header("refresh:2;url=index.php");
+exit;
 ?>
